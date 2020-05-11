@@ -27,7 +27,7 @@ body
 	--text-primary: #1f1f1f;
 	--text-secondary: #000000;
 	--bg-primary: #ffffff;
-	--bg-img: url(/images/bg-light.jpg) repeat 0 0 fixed;
+	--bg-img: url(../images/bg-light.jpg) repeat 0 0 fixed;
 	--bg-secondary: #555555;
 	--sub-text: #e6772e;
 	--opacity: 0.4;
