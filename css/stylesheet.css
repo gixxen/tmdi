@@ -166,20 +166,18 @@ button {
 input {
   background: var(--bg-primary);
   border: none;
-  border-bottom: 1px solid var(--text-primary);
   color: var(--text-primary);
-  font-size: 1.25rem;
-  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0 .5rem .5rem .5rem;
 }
 textarea {
   background: var(--bg-primary);
   border: none;
-  border-bottom: 1px solid var(--text-primary);
   color: var(--text-primary);
-  font-size: 1.25rem;
-  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  padding: 0 .5rem .5rem .5rem;
 }
-form{
+form {
   display: flex;
   flex-direction: row;
   flex-flow: column;
