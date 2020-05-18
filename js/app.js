@@ -1,21 +1,5 @@
-const desktopScreen = window.matchMedia("(min-width: 800px)");
+const desktopScreen = window.matchMedia("(min-width: 500px)");
 
-
-
-//FADE IN ON SCROLL
-$(window).scroll(function(){
-    if ($(".in").mouseover(function() {
-        $(".in").css("opacity", 1)
-    }))
-        $(".in").css("opacity", 0 + $(window).scrollTop() / 500);
-})
-// FADE OUT ON SCROLL
-  $(window).scroll(function(){
-    if ($(".out").mouseover(function() {
-        $(".out").css("opacity", 1)
-    }))
-        $(".out").css("opacity", 1.25 - $(window).scrollTop() / 800);
-})
 
 // SERVICE HOVER CARDS ////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
@@ -24,7 +8,7 @@ $(".imgBx").mouseenter(function () {
     $(this).next(".content").animate({ opacity:1 }, 300, 'linear')
 });
 $(".card").mouseleave(function () {
-    $(".content").animate({ opacity:0 }, 300, 'linear')
+    $(".content").animate({ opacity:0 }, 100, 'linear')
 });
 });
 
@@ -83,24 +67,6 @@ if (desktopScreen.matches) {
 //});
 
 
-// CIRCLE CLIP SCROLL INTO VIEW ////////////////////////////////////////////////////////
-//var section = document.querySelector('.in');
-//window.addEventListener('scroll', function() {
-//    var value = window.scrollY;
-//    var bounding = section.getBoundingClientRect();
-//    var out;
-//    
-//    if (bounding.top >= 1) {
-//        section.style.clipPath = "circle("+ value +"px at center center)";
-//    } else {
-//        
-//        // need to calculate bounding - scrollY
-//        out = 
-//        section.style.clipPath = "circle("+ out +"px at center center)";
-//    }
-// 
-//});
-
  // CUSTOMER SLIDER ////////////////////////////////////////////////////////////////////
 $(document).ready(function(){
     $('.customer-logos').slick({
@@ -125,14 +91,32 @@ $(document).ready(function(){
     });
 });
 
+// SCROLL TO LINKS ////////////////////////////////////////////////////////////////////////////////
 
-// SCROLL ANIMATIONS /////////////////////////////////////////////////////////////////////
+//function to make each .nav-link change class of "first" to each appropriate section or reset with "home"
+$(document).ready(function(){
+    // Add smooth scrolling to all links
+    $(".nav-link").on('click', function(event) {
+        if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+        var hash = this.hash;
+  
+        if (document.querySelectorAll('.first').length > 0) {
+            document.querySelectorAll('.first').forEach(element => {
+                element.classList.remove('first');
+            });
+        }
+        
+        $(hash).addClass('first');
+        gsap.from('.panel', 1, { scale: .8, autoAlpha: 0});
+        animateCards.play(0);
+        slogan.play(0);
+      }
+    });
+  });
 
-gsap.from('#photo', 4, { x: -200, y: -200, autoAlpha: 0, delay: 2, ease: 'elastic'});
-gsap.from('.first', 1, { scale: 2, autoAlpha: 0});
-gsap.from('#experiences', 1, { x: 300, autoAlpha: 0, delay: 1});
-gsap.from('#section-1 p', 1, { y: 200, autoAlpha: 0, delay: 2});
-
+// SCROLL ANIMATIONS & GSAP/////////////////////////////////////////////////////////////////////
 
 let sections = gsap.utils.toArray("section"),
     currentSection = sections[0];
@@ -162,48 +146,85 @@ sections.forEach((section, i) => {
 
 }
 });
+//gsap.fromTo("#photo", 1, {filter: 'blur(4px)'}, {filter: 'blur(0px)'}) // Causes box-shadow to disappear after timeline?
+gsap.registerPlugin(TextPlugin);
+
+var intro = gsap.timeline({scale: .6, opacity: 0});
+intro.from("#photo", {y: -100, x: -50, scale: 2, opacity: 0, boxShadow:"0px 50px 50px 50px rgba(0,0,0,0.9)", ease:'power2.in', duration: 1.5, delay: .25});
+intro.to("#photo", {x: 200, y: 100, opacity: 1, duration: 2}, ">-1.5");
+intro.from('.title', 1, { scale: 2, y: -50, x: 100, autoAlpha: 0, delay: 0.5, ease:'power2.out'});
+intro.to("#photo", { x: 100, y: 50, opacity: 1, duration: 1, ease:'none'}, ">-1");
+intro.from('#experiences', 1, { x: 300, autoAlpha: 0, ease:'power2.out'}, ">-1");
+intro.to("#photo", {x: 0, y: 0, opacity: 1, duration: 1}, ">-1");
+intro.from('.p-right-home', 1, { y: 200, scale: .5, autoAlpha: 0, ease:'power2.out'}, ">-1");
+intro.play(0);
+
+var slogan = gsap.timeline({repeat: 0});
+slogan.from('.shadow', 2.5, {filter: 'drop-shadow(-10px 10px 40px rgba(0, 0, 0, 1))', ease: 'power2.out'});
+slogan.from('#honeycomb', 1.5, {x: -1500, ease: 'power2.out'}, ">-1.5");
+slogan.from('#affordable', .9, { y: -400, autoAlpha: 0, ease: "power2.in"}, 1.25);
+slogan.from('#practical', .7, { y: -400, autoAlpha: 0, ease: "power2.in"});
+slogan.from('#responsive', .6, { y: -400, autoAlpha: 0, ease: "power2.in"});
+slogan.from('.expand', 1, {autoAlpha: 0, opacity: 0, ease: 'none'}, ">-.3");
+// cant change scale without losing hover transform
+//slogan.from('.expand', 1, {autoAlpha: 0, scale: 0, ease: 'power2.out'});
+
+
+//slogan.to('.title-slogan', .5, {filter:'grayscale(100)', fontWeight: 800, opacity: .65, delay: 1, fontSize: '15vw', zIndex: '-1', ease: "power2.out"});
+//slogan.to('.title-slogan span', .5, { filter:'grayscale(100)', fontWeight: 800, opacity: .32, fontSize: '15vw', zIndex: '-1', ease: "power2.out"}, '>-.5');
+//slogan.fromTo('.p-slogan', 1, {rotateY: 90},{opacity: 1, color: 'var(--sub-text)', fontSize: '1vw', y: '-100%', rotateY: 0, ease: 'power2.in'}, '>-.5');
+//slogan.to('#honeycomb', 1, {backgroundColor: 'rgba(0,0,0,.4)', ease: 'power2.in'}, '>-.5');
+
+
+var animateCards = gsap.timeline({repeat: 0});
+animateCards.from('#card-1', 1, { x: -200,y: 400, autoAlpha: 0, ease: "power2.in", delay: 2});
+animateCards.from('#card-2', 1, { x: -100, y: 400, autoAlpha: 0, ease: "power2.in"}, ">-.5");
+animateCards.from('#card-3', 1, { x: 100, y: 400, autoAlpha: 0, ease: "power2.in"}, ">-1");
+animateCards.from('#card-4', 1, { x: 200, y: 400, autoAlpha: 0, ease: "power2.in"}, ">-1.5");
+
+var animateElements = gsap.timeline({repeat: 0});
+animateElements.from('h2', 1, { x: 300, autoAlpha: 0, delay: 1});
+animateElements.from('.p-center', 1, { rotateY: 90, scale: 1.2, autoAlpha: 0});
+
+gsap.registerPlugin(CSSRulePlugin);
+
+var rule = CSSRulePlugin.getRule("#info p:before");
+var rule2 = CSSRulePlugin.getRule("#info-2 p:before");
+
+var animateAccent = gsap.timeline({repeat: 0});
+animateAccent.to(rule, {duration: 1, cssRule: {left: 200, width: 50, borderTop: '1.5px solid #e6772e'}, ease: 'power2.out', delay: 2});
+animateAccent.to(rule, {duration: .7, cssRule: {left: 0, width: 25, borderTop: '3px solid #e6772e'}, ease: 'power2.in'});
+var animateAccent2 = gsap.timeline({repeat: 0});
+animateAccent2.to(rule2, {duration: 1, cssRule: {left: 200, width: 50, borderTop: '1.5px solid #e6772e'}, ease: 'power2.out', delay: 2});
+animateAccent2.to(rule2, {duration: .7, cssRule: {left: 0, width: 25, borderTop: '3px solid #e6772e'}, ease: 'power2.in'});
 
 function setSection(newSection) {
   if (newSection !== currentSection) {
 
-    gsap.to(currentSection, {scale: .8, autoAlpha: 0})
-    gsap.to(newSection, 1, {scale: 1, autoAlpha: 1});
-    currentSection = newSection;
-    
-    gsap.from('#card-1', { x: -200,y: 400, autoAlpha: 0, delay: 1});
-    gsap.from('#card-2', { x: -100, y: 400, autoAlpha: 0, delay: 1.4});
-    gsap.from('#card-3', { x: 100, y: 400, autoAlpha: 0, delay: 1.4});
-    gsap.from('#card-4', { x: 200, y: 400, autoAlpha: 0, delay: 1});
-    gsap.from('.title', { x: 300, autoAlpha: 0, delay: 1});
-    gsap.from('h2', { y: -300, autoAlpha: 0, delay: .5});
-    gsap.from('p', { scale: 2, autoAlpha: 0, delay: .25});
-    gsap.from('#affordable', 2, { y: -400, autoAlpha: 0, delay: 1, ease: "power2.inOut"});
-    gsap.from('#practical', 2, { x: -400, autoAlpha: 0, delay: 2, ease: "power2.inOut"});
-    gsap.from('#responsive', 2, { y: 400, autoAlpha: 0, delay: 3, ease: "power2.inOut"});
+     gsap.to(currentSection, {scale: .8, autoAlpha: 0})
+     gsap.to(newSection, 1, {scale: 1, autoAlpha: 1});
+     slogan.play(0);
+     animateCards.play(0);
+     animateElements.play(0);
+     intro.play(0);
+     animateAccent.play(0);
+     animateAccent2.play(0);
 
 
-  }
-  gsap.to('#card-1', 1, { y: 0, x: 0, autoAlpha: 1, delay: 1});
-  gsap.to('#card-2', 1, { y: 0, x: 0, autoAlpha: 1, delay: 1.4});
-  gsap.to('#card-3', 1, { y: 0, x: 0, autoAlpha: 1, delay: 1.4});
-  gsap.to('#card-4', 1, { y: 0, x: 0, autoAlpha: 1, delay: 1});
-  gsap.to('.title', 1, { x: 0, autoAlpha: 1, delay: 1});
-  gsap.to('h2', 1, { y: 0, autoAlpha: 1, delay: .5});
-  gsap.to('p', 2, { scale: 1, autoAlpha: 1, delay: .25});
-  gsap.to('#affordable', 2, { y: 0, autoAlpha: 1, delay: 1, ease: "power2.inOut"});
-  gsap.to('#practical', 2, { x: 0, autoAlpha: 1, delay: 2, ease: "power2.inOut"});
-  gsap.to('#responsive', 2, { y: 0, autoAlpha: 1, delay: 3, ease: "power2.inOut"});
+     currentSection = newSection;
+
+    }
+
 
 }
-
 // handles the infinite part, wrapping around at either end....
-//document.documentElement.scrollTop = 2;
-//ScrollTrigger.create({
+// document.documentElement.scrollTop = 2;
+// ScrollTrigger.create({
 //  start: 1,
 //  end: () => window.innerHeight * (sections.length - 1) - 1,
 //  onLeaveBack: () => document.documentElement.scrollTop = document.body.scrollHeight - 2,
 //  onLeave: () => document.documentElement.scrollTop = 2
-//});
+// });
     
 
 

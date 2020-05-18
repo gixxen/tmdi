@@ -48,7 +48,6 @@ body {
   --sub-text: #e6772e;
   --opacity: 0.1;
 }
-
 body::-webkit-scrollbar {
   width: 0.25rem;
 }
@@ -290,12 +289,58 @@ textarea::placeholder{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 8vw;
-  text-align: left;
+  text-align: right;
   font-weight: 300;
-  margin: 0;
+  margin: 1.5rem;
+  line-height: 10vw;
+  width: 45vw;
+  display: inline-block;
+}
+/*.title-slogan:before{
+  content: '';
+  background: linear-gradient(90deg, transparent, var(--bg-primary));
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 65%;
+  z-index: -1;
+  border-radius: 300px;
+}*/
+.expand {
+  position: relative;
+  display: inline-block;
+  top: -10px;
+  width: 5rem;
+  height: 5rem;
+  color: var(--text-primary);
+  filter: grayscale(100%);
+  transition: var(--transition-speed);
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  box-shadow: -6px -6px 10px rgba(255,255,255,0.1), 6px 6px 10px rgba(0, 0, 0, 0.4);
+  margin-left: 2rem;
+  border-radius: 50%;
+}
+.expand svg {
+  filter:  brightness(130%);
+  width: 2rem;
+  height: 2rem;
+  margin: 1.5rem;
+  transition: var(--transition-speed);
+}
+.expand:hover + .p-slogan {
+  opacity: 1;
+}
+.expand:hover{
+  filter: grayscale(0%) brightness(100%);
+  transform: rotate(180deg);
 }
 #affordable{
-  padding-top: 1vh;
+  letter-spacing: .013em;
+}
+#practical span{
+  letter-spacing: .09em;
 }
 #honeycomb{
   fill: var(--bg-primary);
@@ -311,10 +356,27 @@ textarea::placeholder{
   -webkit-filter: drop-shadow( 4px -4px 3px rgba(0, 0, 0, .8)),;
   filter: drop-shadow( 4px -4px 3px rgba(0, 0, 0, .8));
 }
-.title-slogan-2 {
+.slogan-container{
+  display: inline-block;
+}
+.p-slogan{
+  display: inline-block;
+  margin: 0;
+  text-align: left;
+  margin-left: 20px;
+  padding: 20px;
+  max-width: 380px;
+  width: max-content;
+  opacity: 0;
+  background: var(--bg-primary);
+  transition: var(--transition-speed);
+  box-shadow: -6px -6px 10px rgba(255,255,255,0.1), 6px 6px 10px rgba(0, 0, 0, 0.4);
+}
+.title-slogan span.variable {
   color: var(--text-primary);
+  background: transparent;
+  -webkit-text-fill-color: var(--text-primary);
   font-size: 8vw;
-  line-height: 13vw;
   text-align: left;
   font-weight: 300;
   margin: 0;
@@ -326,6 +388,16 @@ textarea::placeholder{
   margin: 0;
   padding: 40px 0;
   width: 50vw;
+  text-align: right;
+  float: right;
+}
+.p-right-home {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 40px 0;
+  width: 40vw;
   text-align: right;
   float: right;
 }
@@ -348,7 +420,7 @@ textarea::placeholder{
 .p-center {
   width: 75vw;
   text-align: center;
-  margin: auto;
+  margin: 5vh auto;
 }
 #clients-p{
   width: 60vw;
@@ -397,8 +469,18 @@ p{
   margin-top: 10vh;
 }
 #info p {
+  float: left;
   text-align: left;
-  margin: 0 .25vw;
+  margin: 7vw 5vw;
+  width: 30vw;
+}
+#info p:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  border-top: 3px solid #e6772e;
+  width: 25px;
 }
 #info-2 {
   display: block;
@@ -412,19 +494,32 @@ p{
   font-size: 6vw;;
 }
 #info-2 h2 {
-  width: 60vw;
+  float: left;
   font-size: 4vw;
   line-height: 6vw;
+  text-align: right;
 }
 #info-2 .variable {
   color: white;
 }
+#info-2 .gradient {
+  float: right;
+}
 #info-2 p {
   float: left;
-  margin: auto;
-  width: 60vw;
+  text-align: left;
+  margin: 5vw 5vw;
+  width: 30vw;
   position: relative;
   color: #dadada;
+}
+#info-2 p:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  border-top: 3px solid #e6772e;
+  width: 25px;
 }
 #photo {
   width: 50vw;
@@ -437,9 +532,9 @@ p{
 }
 .hero {
   position: absolute;
-  left: 50%;
+  left: 70%;
   transform: translateX(-50%);
-  top: 120%;
+  top: 60%;
   width: 80%;
   mix-blend-mode: overlay;
   opacity: .7;
@@ -932,6 +1027,12 @@ p{
     margin: auto;
     float: none;
   }
+  .p-right-home{
+    text-align: left;
+    width: 90%;
+    margin: auto;
+    float: none;
+  }
   #section-2 .h2-title{
     line-height: 4rem;
   }
@@ -969,7 +1070,7 @@ p{
   #affordable{
     padding-top: 8vh;
   }
-  .title-slogan, .title-slogan-2{
+  .title-slogan{
     font-size: 15vw;
     margin: auto;
     padding: 5vw;
