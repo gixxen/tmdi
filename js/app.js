@@ -280,25 +280,32 @@ let sections = gsap.utils.toArray("section"),
     var hero = gsap.timeline({
         repeat: 0,
     });
-    hero.from('h2', {
+    hero.fromTo('h2', {
         x: 300,
         autoAlpha: 0,
+    }, {
+        x: 0,
+        autoAlpha: 1,
     });
-    hero.from('.p-center', {
+    hero.fromTo('.p-center', {
         rotateY: 90,
         scale: 1.2,
         autoAlpha: 0,
         delay: .5
-    });
-    hero.to('h2', 1, {
-        x: 0,
-        autoAlpha: 1,
-    });
-    hero.to('.p-center', 1, {
+    }, {
         rotateY: 0,
         scale: 1,
         autoAlpha: 1
     });
+    // hero.to('h2', 1, {
+    //     x: 0,
+    //     autoAlpha: 1,
+    // });
+    // hero.to('.p-center', 1, {
+    //     rotateY: 0,
+    //     scale: 1,
+    //     autoAlpha: 1
+    // });
     hero.to(rule, {
         duration: .75,
         cssRule: {
@@ -381,7 +388,7 @@ function init() {
    init();
 
 gsap.defaults({
-    overwrite: 'auto',
+    overwrite: 'false',
     duration: 0.3
 });
 
@@ -449,18 +456,12 @@ gsap.registerPlugin(TextPlugin);
 
 
 //////////////////////////////////////////////// INFINITE SCROLL
-// if (desktopScreen.matches) {
-
-//     // handles the infinite part, wrapping around at either end....
-
-//     document.documentElement.scrollTop = 2;
-//     ScrollTrigger.create({
-//         start: 1,
-//         end: () => window.innerHeight * (sections.length - 1) - 1,
-//         onLeaveBack: () => document.documentElement.scrollTop = document.body.scrollHeight - 2,
-//         onLeave: () => document.documentElement.scrollTop = 2
-//     });
-// }
+// ScrollTrigger.create({
+//   start: 1,
+//   end: () => window.innerHeight * (sections.length - 1) - 1,
+//   onLeaveBack: self => self.scroll(ScrollTrigger.maxScroll(window) - 2),
+//   onLeave: self => self.scroll(2)
+// }).scroll(2);
 
 
 // SCROLL SPEED ////////////////////////////////////////////////////////////////////////
@@ -490,4 +491,4 @@ gsap.registerPlugin(TextPlugin);
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////

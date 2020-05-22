@@ -144,6 +144,7 @@ section:not(.first) {
 }
 .top-item {
   color: var(--text-primary);
+  cursor: pointer;
 }
 .top-item:hover {
   color: #e6772e;
