@@ -280,22 +280,18 @@ let sections = gsap.utils.toArray("section"),
     var hero = gsap.timeline({
         repeat: 0,
     });
-    hero.fromTo('h2', {
+    hero.to('h2', {
         x: 300,
-        autoAlpha: 0,
-    }, {
-        x: 0,
-        autoAlpha: 1,
     });
-    hero.fromTo('.p-center', {
+    hero.to('h2', {
+        x: 0,
+    });
+    hero.to('.p-center', {
         rotateY: 90,
-        scale: 1.2,
-        autoAlpha: 0,
         delay: .5
-    }, {
+    });
+    hero.to('.p-center', {
         rotateY: 0,
-        scale: 1,
-        autoAlpha: 1
     });
     // hero.to('h2', 1, {
     //     x: 0,
@@ -338,15 +334,6 @@ let sections = gsap.utils.toArray("section"),
         delay: .5
 
     });
-    hand.to('h2', 1, {
-        x: 0,
-        autoAlpha: 1,
-    });
-    hand.to('.p-center', 1, {
-        rotateY: 0,
-        scale: 1,
-        autoAlpha: 1
-    });
     hand.to(rule2, {
         duration: .75,
         cssRule: {
@@ -379,9 +366,9 @@ function init() {
     sections[0].timeline = intro;
     sections[1].timeline = animateCards;
     sections[2].timeline = slogan;
-    sections[3].timeline = hero;
-    sections[4].timeline = hand;
-    sections[5].timeline = animateCards;
+    sections[3].timeline = animateCards;
+    sections[4].timeline = hero;
+    sections[5].timeline = hand;
 
    }
 

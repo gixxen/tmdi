@@ -32,6 +32,7 @@ body {
   height: 100%;
   display: block;
   background: var(--bg-img);
+  background-size: cover;
   color: var(--text-primary);
   padding: 0;
   margin: 0;
