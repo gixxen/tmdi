@@ -280,14 +280,21 @@ let sections = gsap.utils.toArray("section"),
     var hero = gsap.timeline({
         repeat: 0,
     });
-    hero.from('h2', 1, {
+    hero.fromTo('h2', 1, {
         x: 300,
         autoAlpha: 0
+    }, {
+        x: 0,
+        autoAlpha: 1
+
     });
-    hero.from('p', 1, {
+    hero.fromTo('.p-center', 1, {
         rotateY: 90,
         autoAlpha: 0,
         delay: .5
+    }, {
+        rotateY: 0,
+        autoAlpha: 1
     });
 
     hero.to(rule, {
@@ -311,14 +318,20 @@ let sections = gsap.utils.toArray("section"),
     var hand = gsap.timeline({
         repeat: 0
     });
-    hand.from('h2', 1, {
+    hand.fromTo('h2', 1, {
         x: 300,
         autoAlpha: 0
+    }, {
+        x: 0,
+        autoAlpha: 1
     });
-    hand.from('p', 1, {
+    hand.fromTo('.p-center', 1, {
         rotateY: 90,
-        autoAlpha: 0,
-        delay: .5
+        delay: .5,
+        autoAlpha: 0
+    }, {
+        rotateY: 0,
+        autoAlpha: 1
     });
     hand.to(rule2, {
         duration: .75,
@@ -407,6 +420,8 @@ gsap.set("body", {
     $('section:not(.first)').css('transform', 'scale(1)');
    }
 
+
+   
    function setSection(newSection) {
     
     if (newSection !== currentSection
