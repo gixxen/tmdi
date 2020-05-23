@@ -282,14 +282,19 @@ let sections = gsap.utils.toArray("section"),
     });
     hero.fromTo('h2', 1, {
         x: 300,
+        autoAlpha: 0
     }, {
         x: 0,
+        autoAlpha: 1
+
     });
     hero.fromTo('.p-center', 1, {
         rotateY: 90,
+        autoAlpha: 0,
         delay: .5
     }, {
-        rotateY: 0
+        rotateY: 0,
+        autoAlpha: 1
     });
 
     hero.to(rule, {
@@ -315,16 +320,17 @@ let sections = gsap.utils.toArray("section"),
     });
     hand.fromTo('h2', 1, {
         x: 300,
+        autoAlpha: 0
     }, {
         x: 0
     });
     hand.fromTo('.p-center', 1, {
         rotateY: 90,
-        delay: .5
-
+        delay: .5,
+        autoAlpha: 1
     }, {
         rotateY: 0,
-
+        autoAlpha: 1
     });
     hand.to(rule2, {
         duration: .75,
@@ -399,7 +405,6 @@ gsap.set("body", {
             animation: section.timeline,
             trigger: section,
             
-            // use dynamic scroll positions based on the window height (offset by half to make it feel natural)
             start: "top center",
             end: "bottom center",
             toggleActions: 'restart none none none'
