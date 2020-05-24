@@ -258,6 +258,7 @@ let sections = gsap.utils.toArray("section"),
         ease: "power2.in"
     }, ">-1.5");
     
+    
     // var animateElements = gsap.timeline({
     //     repeat: 0
     // });
@@ -280,21 +281,12 @@ let sections = gsap.utils.toArray("section"),
     var hero = gsap.timeline({
         repeat: 0,
     });
-    hero.fromTo('h2', 1, {
+    hero.from('h2', 1, {
         x: 300,
-        autoAlpha: 0
-    }, {
-        x: 0,
-        autoAlpha: 1
-
     });
-    hero.fromTo('.p-center', 1, {
+    hero.from('.p-center', 1, {
         rotateY: 90,
-        autoAlpha: 0,
-        delay: .5
-    }, {
-        rotateY: 0,
-        autoAlpha: 1
+        delay: 1
     });
 
     hero.to(rule, {
@@ -315,23 +307,16 @@ let sections = gsap.utils.toArray("section"),
         },
         ease: 'power2.in'
     });
+
     var hand = gsap.timeline({
         repeat: 0
     });
-    hand.fromTo('h2', 1, {
+    hand.from('h2', 1, {
         x: 300,
-        autoAlpha: 0
-    }, {
-        x: 0,
-        autoAlpha: 1
     });
-    hand.fromTo('.p-center', 1, {
+    hand.from('.p-center', 1, {
         rotateY: 90,
-        delay: .5,
-        autoAlpha: 0
-    }, {
-        rotateY: 0,
-        autoAlpha: 1
+        delay: 1
     });
     hand.to(rule2, {
         duration: .75,
@@ -352,14 +337,29 @@ let sections = gsap.utils.toArray("section"),
         ease: 'power2.in'
     });
     
-        
-    
-        //slogan.play(0);
-        //animateCards.play(0);
-        //animateElements.play(0);
-        //intro.play(0);
-        //hero.play(0);
-        //hand.play(0);
+    var clients = gsap.timeline({
+        repeat: 0
+    });
+    clients.from('h2', 1, {
+        x: 300,
+        autoAlpha: 0,
+        delay: .25
+    });
+    clients.from('p', 1, {
+        scale: 0,
+        delay: .25
+    });
+    clients.from('.slide', 1, {
+        scale: 0,
+        stagger: { 
+            each: 0.1,
+            from: "random",
+            axis: "y",
+            grid: "auto",
+            ease: "power2.inOut"
+          }
+    });
+
 
 function init() {
     sections[0].timeline = intro;
@@ -368,6 +368,9 @@ function init() {
     sections[3].timeline = animateCards;
     sections[4].timeline = hero;
     sections[5].timeline = hand;
+    // sections[6].timeline = clients;
+    // sections[7].timeline = contact;
+
 
    }
 
@@ -397,7 +400,7 @@ gsap.set("body", {
           end: () => (i + 0.5) * innerHeight,
           // when a new section activates (from either direction), set the section accordingly
           onToggle: self => self.isActive && setSection(section),
-          toggleActions: 'restart none restart none'
+          toggleActions: 'restart none none none'
         });
        });
    } else {                     ////////////////////////// MOBILE ///////////////////////
@@ -420,14 +423,31 @@ gsap.set("body", {
     $('section:not(.first)').css('transform', 'scale(1)');
    }
 
-
-   
+ 
    function setSection(newSection) {
     
     if (newSection !== currentSection
     && desktopScreen.matches) {
-      gsap.to(currentSection, {scale: 0.7, autoAlpha: 0});
-      gsap.to(newSection, {scale: 1, autoAlpha: 1});
+
+        // var sectionTimeline = gsap.timeline();
+        // sectionTimeline.to(currentSection, {scale: 0.7, autoAlpha: 0}, 0);
+        // sectionTimeline.to(newSection, {scale: 1, autoAlpha: 1}, 0);
+        
+        //  var masterTimeline = gsap.timeline();
+        //  masterTimeline.add(sectionTimeline())
+        //                .add(intro(), 0)
+        //                .add(animateCards(), 0)
+        //                .add(slogan(), 0)
+        //                .add(hero(), 0)
+        //                .add(hand(), 0)
+        //              //   .add(clients(), 0)
+        //              //   .add(contact(), 0)
+        // masterTimeline.play(0);
+        gsap.to(currentSection, {autoAlpha: 0});
+        gsap.to(newSection, {autoAlpha: 1});
+
+    //   gsap.to(currentSection, {scale: 0.7, autoAlpha: 0});
+    //   gsap.to(newSection, {scale: 1, autoAlpha: 1});
       
       currentSection = newSection;
     }
@@ -437,6 +457,8 @@ gsap.set("body", {
 
 //gsap.fromTo("#photo", 1, {filter: 'blur(4px)'}, {filter: 'blur(0px)'}) // Causes box-shadow to disappear after timeline?
 gsap.registerPlugin(TextPlugin);
+
+
 
 
 

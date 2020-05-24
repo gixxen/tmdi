@@ -79,7 +79,7 @@ section {
 section:not(.first) {
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.8);
+  transform: scale(1); /*was .8*/
 } 
 .hr50vh {
   border: none;
