@@ -604,17 +604,66 @@
       </section>
 
       <section id="section-8" class="panel contact">
+        <h2 class="h2-title gradient">get in touch</h2>
+
         <div class="contact-container">
-          <h2 class="h2-title gradient">get in touch</h2>
+
+        <div class="contact-info">
+          <img
+          class="contact-logo"
+          src="images/TMDI Logo_White.png"
+          alt="logoPNG"
+          />
+            <div>
+              <ul class="details">
+                <li>
+                  <span><i class="fas fa-map-marker-alt"></i></span>
+                  <span>1255A Reid St, Unit 8<br>
+                    Richmond Hill, ON<br>
+                    L4B 1E9</span>
+                </li>
+                <li>
+                  <span><i class="far fa-envelope-open"></i></span>
+                  <span><a href="mailto:info@tmdicanada.ca">info@tmdicanada.ca</a></span>
+                </li>
+                <li>
+                  <span><i class="fas fa-phone-volume"></i></span>
+                  <span>905-771-0812</span>
+                </li>
+              </ul>
+            </div>
+            <div class="socialContainer">
+              <a class="icon" href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a class="icon" href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a class="icon" href="#">
+                <i class="fas fa-comment"></i>
+              </a>
+              <a class="icon" href="#">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+
+
             <script src="https://www.google.com/recaptcha/api.js"></script>
             <div class="form-container">
                 <form method="post" id="reused_form" >
-                    <!--<label for="name">Your Name:</label>-->
-                    <input id="name" type="text" name="Name" required maxlength="50" placeholder="name">
-                    <!--<label for="email">Email Address:</label>-->
-                    <input id="email" type="email" name="Email" required maxlength="50" placeholder="email">
-                    <!--<label for="message">Message:</label>-->
-                    <textarea id="message" name="Message" rows="6" maxlength="6000" required placeholder="message"></textarea>
+                  <div class="input-box">
+                    <input id="name" type="text" name="Name" required maxlength="50">
+                    <span>name</span>
+                  </div>
+                  <div class="input-box">
+                    <input id="email" type="email" name="Email" required maxlength="50">
+                    <span>email</span>
+                  </div>
+                  <div class="input-box">
+                    <textarea id="message" name="Message" rows="6" maxlength="6000" required></textarea>
+                    <span>write your message here</span>
+                  </div>
                     <div class="g-recaptcha" data-sitekey="Insert your recaptcha site key here"></div>
                     <button class="button-primary" type="submit" >submit</button>
                 </form>
@@ -624,27 +673,10 @@
                 </div>
                 <div id="error_message" style="width:100%; height:100%; display:none; "> <h3>Error</h3> Sorry there was an error sending your form. </div>
             </div>
-        </div>
+          </div>
 
 
-
-        <div class="socialContainer">
-          <a class="icon" href="#">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a class="icon" href="#">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a class="icon" href="#">
-            <i class="fas fa-comment"></i>
-          </a>
-          <a class="icon" href="#">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a class="icon" href="#">
-            <i class="fas fa-phone"></i>
-          </a>
-        </div>
+        
         <div id="copyright">© The Marketing Department Inc 2020</div>
       </section>
 
