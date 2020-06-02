@@ -205,17 +205,42 @@ let sections = gsap.utils.toArray("section"),
         autoAlpha: 0,
         ease: "power2.in"
     });
-    slogan.from('.expand', 1, {
-        autoAlpha: 0,
-        opacity: 0,
-        ease: 'none'
-    }, ">-.3");
+    slogan.to('.title-slogan', .5, {
+        filter:'grayscale(100)', fontWeight: 800, opacity: .65, delay: 1, fontSize: '15vw', zIndex: '-1', ease: "power2.out"
+    });
+    slogan.to('.title-slogan span', .5, { 
+        filter:'grayscale(100)', fontWeight: 800, opacity: .32, fontSize: '15vw', zIndex: '-1', ease: "power2.out"
+    }, '>-.5');
+
+    // $(document).ready(function() {
+
+    //     if (slogan.isActive()) { 
+    //         return;
+    //     }
+    //     $(".title-slogan").hover(over, out);
+
+    // })
+
+
+    // function over() {
+    //     slogan.reverse()
+    // }
+
+    // function out() {
+    //     slogan.play()
+    // };
+
+    // slogan.from('.expand', 1, {
+    //     autoAlpha: 0,
+    //     opacity: 0,
+    //     ease: 'none'
+    // }, ">-.3");
     // cant change scale without losing hover transform
     //slogan.from('.expand', 1, {autoAlpha: 0, scale: 0, ease: 'power2.out'});
     
     
     //slogan.to('.title-slogan', .5, {filter:'grayscale(100)', fontWeight: 800, opacity: .65, delay: 1, fontSize: '15vw', zIndex: '-1', ease: "power2.out"});
-    //slogan.to('.title-slogan span', .5, { filter:'grayscale(100)', fontWeight: 800, opacity: .32, fontSize: '15vw', zIndex: '-1', ease: "power2.out"}, '>-.5');
+    //slogan.to('.title-slogan span', .5, { filter:'grayscale(100)', fontWeight: 800, opacity: .32, fontSize: '15vw', zIndex: '-1', ease: "power2.out"});
     //slogan.fromTo('.p-slogan', 1, {rotateY: 90},{opacity: 1, color: 'var(--sub-text)', fontSize: '1vw', y: '-100%', rotateY: 0, ease: 'power2.in'}, '>-.5');
     //slogan.to('#honeycomb', 1, {backgroundColor: 'rgba(0,0,0,.4)', ease: 'power2.in'}, '>-.5');
     
@@ -223,12 +248,12 @@ let sections = gsap.utils.toArray("section"),
     var animateCards = gsap.timeline({
         repeat: 0
     });
-    animateCards.from('h2', 1, {
+    animateCards.from('#marketing-h2', 1, {
         x: 300,
         autoAlpha: 0,
         delay: .25
     });
-    animateCards.from('.p-center', 1, {
+    animateCards.from('#marketing-p', 1, {
         rotateY: 90,
         scale: 1.2,
         autoAlpha: 0
@@ -244,19 +269,57 @@ let sections = gsap.utils.toArray("section"),
         y: 400,
         autoAlpha: 0,
         ease: "power2.in"
-    }, ">-.5");
+    }, 1.5);
     animateCards.from('#card-3', 1, {
         x: 100,
         y: 400,
         autoAlpha: 0,
         ease: "power2.in"
-    }, ">-1");
+    }, 2);
     animateCards.from('#card-4', 1, {
         x: 200,
         y: 400,
         autoAlpha: 0,
         ease: "power2.in"
-    }, ">-1.5");
+    }, 2.5);
+
+    var animateCards2 = gsap.timeline({
+        repeat: 0
+    });
+    animateCards2.from('#retail-h2', 1, {
+        x: 300,
+        autoAlpha: 0,
+        delay: .25
+    });
+    animateCards2.from('#retail-p', 1, {
+        rotateY: 90,
+        scale: 1.2,
+        autoAlpha: 0
+    });
+    animateCards2.from('#card-5', 1, {
+        x: -200,
+        y: 400,
+        autoAlpha: 0,
+        ease: "power2.in",
+    });
+    animateCards2.from('#card-6', 1, {
+        x: -100,
+        y: 400,
+        autoAlpha: 0,
+        ease: "power2.in"
+    }, 1.5);
+    animateCards2.from('#card-7', 1, {
+        x: 100,
+        y: 400,
+        autoAlpha: 0,
+        ease: "power2.in"
+    }, 2);
+    animateCards2.from('#card-8', 1, {
+        x: 200,
+        y: 400,
+        autoAlpha: 0,
+        ease: "power2.in"
+    }, 2.5);
     
     
     // var animateElements = gsap.timeline({
@@ -281,16 +344,16 @@ let sections = gsap.utils.toArray("section"),
     var hero = gsap.timeline({
         repeat: 0,
     });
-    hero.from('h2', 1, {
+    hero.from('#hero-h2', 1, {
         x: 300,
     });
-    hero.from('.p-center', 1, {
+    hero.from('#hero-p', 1, {
         rotateY: 90,
         delay: 1
     });
 
     hero.to(rule, {
-        duration: .75,
+        duration: .55,
         cssRule: {
             left: 200,
             width: 50,
@@ -299,7 +362,7 @@ let sections = gsap.utils.toArray("section"),
         ease: 'power2.out',
     });
     hero.to(rule, {
-        duration: .4,
+        duration: .3,
         cssRule: {
             left: 0,
             width: 25,
@@ -311,15 +374,15 @@ let sections = gsap.utils.toArray("section"),
     var hand = gsap.timeline({
         repeat: 0
     });
-    hand.from('h2', 1, {
+    hand.from('#hand-h2', 1, {
         x: 300,
     });
-    hand.from('.p-center', 1, {
+    hand.from('#hand-p', 1, {
         rotateY: 90,
         delay: 1
     });
     hand.to(rule2, {
-        duration: .75,
+        duration: .55,
         cssRule: {
             left: 200,
             width: 50,
@@ -328,7 +391,7 @@ let sections = gsap.utils.toArray("section"),
         ease: 'power2.out',
     });
     hand.to(rule2, {
-        duration: .4,
+        duration: .3,
         cssRule: {
             left: 0,
             width: 25,
@@ -340,36 +403,63 @@ let sections = gsap.utils.toArray("section"),
     var clients = gsap.timeline({
         repeat: 0
     });
-    clients.from('h2', 1, {
+    clients.from('#clients-h2', 1, {
         x: 300,
         autoAlpha: 0,
         delay: .25
     });
-    clients.from('p', 1, {
+    clients.from('#clients-p', 1, {
         scale: 0,
         delay: .25
     });
-    clients.from('.slide', 1, {
+    clients.from('.slider-container', 1.2, {
+        rotateY: 90,
+        autoAlpha: 0,
+        ease: 'power3.out'
+    });
+
+    var contact = gsap.timeline({
+        repeat: 0
+    });
+    contact.to('.icon', {
+        autoAlpha: 0,
+        y: 200
+    })
+    contact.from('#contact-h2', 1, {
+        x: 300,
+        autoAlpha: 0,
+        delay: .25
+    });
+    contact.from('.contact-info', 1, {
         scale: 0,
-        stagger: { 
+        x: -400,
+        ease: "power2.out"
+    });
+    contact.to('.icon', .8, {
+        y: 0,
+        autoAlpha: 1,
+        stagger: {
             each: 0.1,
-            from: "random",
-            axis: "y",
+            from: "end",
             grid: "auto",
             ease: "power2.inOut"
           }
     });
+    contact.from('.form-container', 1, {
+        scale: 0,
+        delay: .25
+    }, 3);
 
 
 function init() {
     sections[0].timeline = intro;
-    sections[1].timeline = animateCards;
+    sections[1].timeline = animateCards2;
     sections[2].timeline = slogan;
     sections[3].timeline = animateCards;
     sections[4].timeline = hero;
     sections[5].timeline = hand;
-    // sections[6].timeline = clients;
-    // sections[7].timeline = contact;
+    sections[6].timeline = clients;
+    sections[7].timeline = contact;
 
 
    }
@@ -443,11 +533,9 @@ gsap.set("body", {
         //              //   .add(clients(), 0)
         //              //   .add(contact(), 0)
         // masterTimeline.play(0);
-        gsap.to(currentSection, {autoAlpha: 0});
-        gsap.to(newSection, {autoAlpha: 1});
+        gsap.to(currentSection, {autoAlpha: 0, scale: .7});
+        gsap.to(newSection, {autoAlpha: 1, scale: 1, ease: 'power2.inOut'});
 
-    //   gsap.to(currentSection, {scale: 0.7, autoAlpha: 0});
-    //   gsap.to(newSection, {scale: 1, autoAlpha: 1});
       
       currentSection = newSection;
     }

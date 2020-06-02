@@ -244,7 +244,7 @@ section:not(.first) {
   z-index: -1;
   border-radius: 300px;
 }*/
-.expand {
+/* .expand {
   position: relative;
   display: inline-block;
   top: -10px;
@@ -272,7 +272,7 @@ section:not(.first) {
 .expand:hover{
   filter: grayscale(0%) brightness(100%);
   transform: rotate(180deg);
-}
+} */
 #affordable{
   letter-spacing: .013em;
 }
@@ -1197,7 +1197,7 @@ textarea::placeholder{
   #section-3 .hr100px:last-of-type{
     height: 20px;
   }
-  #card-4{
+  #card-4, #card-8{
     padding-bottom: 8vh;
   }
   #section-4{
