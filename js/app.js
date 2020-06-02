@@ -112,9 +112,13 @@ $(document).ready(function(){
             
             if (desktopScreen.matches) {
                 window.scrollTo(0, i * window.innerHeight);
+                sections[i].timeline.play(0);
+                
             }
             if (mobileScreen.matches) {
                 document.querySelector(this.hash).scrollIntoView();
+                sections[i].timeline.play(0);
+
 
             }
         });
